@@ -32,7 +32,7 @@ describe("RequestToken", function () {
     };
   }
 
-  it("Should support the main flow", async function () {
+  it.only("Should support the main flow", async function () {
     const { userOne, userTwo, usdTokenContract, requestTokenContract } =
       await loadFixture(initFixture);
     // Create request
@@ -74,5 +74,11 @@ describe("RequestToken", function () {
       "1"
     );
     expect(await requestTokenContract.recipientFails(userTwo)).to.be.equal("0");
+    // Check recipients
+    // const test = await requestTokenContract.getRecipients();
+    // console.log({ test });
+    expect(await requestTokenContract.getRecipients()).to.contain(
+      await userTwo.getAddress()
+    );
   });
 });

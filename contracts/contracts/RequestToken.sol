@@ -28,6 +28,7 @@ contract RequestToken is ERC721URIStorage, Ownable {
     mapping(uint tokenId => Content content) public contents;
     mapping(address recipient => uint successes) public recipientSuccesses;
     mapping(address recipient => uint fails) public recipientFails;
+    address[] public recipients;
 
     constructor(
         address initOracleAddress
@@ -38,6 +39,10 @@ contract RequestToken is ERC721URIStorage, Ownable {
     function setOracleAddress(address newOracleAddress) public onlyOwner {
         oracleAddress = newOracleAddress;
         emit OracleAddressUpdated(newOracleAddress);
+    }
+
+    function becomeRecipient() public {
+        _saveRecipient(msg.sender);
     }
 
     function create(
@@ -57,6 +62,7 @@ contract RequestToken is ERC721URIStorage, Ownable {
         content.paymentToken = paymentToken;
         content.createdDate = block.timestamp;
         contents[tokenId] = content;
+        _saveRecipient(recipient);
     }
 
     function accept(uint tokenId) public {
@@ -99,5 +105,18 @@ contract RequestToken is ERC721URIStorage, Ownable {
         else {
             // TODO: Implement
         }
+    }
+
+    function getRecipients() public view returns (address[] memory) {
+        return recipients;
+    }
+
+    function _saveRecipient(address recipient) private {
+        for (uint i = 0; i < recipients.length; i++) {
+            if (recipients[i] == recipient) {
+                return;
+            }
+        }
+        recipients.push(recipient);
     }
 }
