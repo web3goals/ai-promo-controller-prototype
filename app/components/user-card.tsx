@@ -46,13 +46,13 @@ export function UserCard(props: {
       </div>
       {/* Content */}
       <div className="w-full flex flex-col items-start gap-2">
-        {successes && (
+        {successes != undefined && (
           <p className="text-sm">
             <span className="font-bold">{successes.toString()}</span>
             <span className="text-muted-foreground"> Completed Requests</span>
           </p>
         )}
-        {fails && (
+        {fails != undefined && (
           <p className="text-sm">
             <span className="font-bold">{fails.toString()}</span>
             <span className="text-muted-foreground"> Failed Requests</span>
