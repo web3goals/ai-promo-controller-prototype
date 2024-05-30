@@ -1,5 +1,6 @@
 import { ChainBadge } from "@/components/chain-badge";
 import { Separator } from "@/components/ui/separator";
+import { UserJoinDialog } from "@/components/user-join-dialog";
 import { UserList } from "@/components/user-list";
 
 export default function UsersPage({ params }: { params: { chain: number } }) {
@@ -13,6 +14,9 @@ export default function UsersPage({ params }: { params: { chain: number } }) {
         <p className="text-muted-foreground">
           Influencers who can help with promotion
         </p>
+      </div>
+      <div className="mt-4">
+        <UserJoinDialog chain={params.chain} />
       </div>
       <Separator className="my-6" />
       <UserList chain={params.chain} />
