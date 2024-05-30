@@ -85,6 +85,10 @@ contract RequestToken is ERC721URIStorage, Ownable {
         promptPart2 = newPromptPart2;
     }
 
+    function addRecipient(address recipient) public onlyOwner {
+        _saveRecipient(recipient);
+    }
+
     function becomeRecipient() public {
         _saveRecipient(msg.sender);
     }
