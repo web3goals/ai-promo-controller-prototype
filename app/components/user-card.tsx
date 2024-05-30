@@ -2,20 +2,13 @@
 
 import { SiteConfigContracts } from "@/config/site";
 import { requestTokenAbi } from "@/contracts/abi/request-token";
+import useEns from "@/hooks/useEns";
 import { addressToShortAddress } from "@/lib/converters";
 import Link from "next/link";
 import { isAddressEqual, zeroAddress } from "viem";
-import { normalize } from "viem/ens";
-import {
-  useAccount,
-  useEnsAvatar,
-  useEnsName,
-  useEnsText,
-  useReadContract,
-} from "wagmi";
+import { useAccount, useReadContract } from "wagmi";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-import { mainnet } from "viem/chains";
 
 export function UserCard(props: {
   user: `0x${string}`;
@@ -26,29 +19,13 @@ export function UserCard(props: {
   /**
    * Define ENS data
    */
-  const { data: ensName } = useEnsName({
-    address: props.user,
-    chainId: mainnet.id,
-  });
-  const { data: ensAvatar } = useEnsAvatar({
-    name: normalize(ensName || ""),
-    chainId: mainnet.id,
-  });
-  const { data: ensDescription } = useEnsText({
-    name: normalize(ensName || ""),
-    key: "description",
-    chainId: mainnet.id,
-  });
-  const { data: ensTwitter } = useEnsText({
-    name: normalize(ensName || ""),
-    key: "com.twitter",
-    chainId: mainnet.id,
-  });
-  const { data: ensTelegram } = useEnsText({
-    name: normalize(ensName || ""),
-    key: "org.telegram",
-    chainId: mainnet.id,
-  });
+  const {
+    name: ensName,
+    avatar: ensAvatar,
+    description: ensDescription,
+    twitter: ensTwitter,
+    telegram: ensTelegram,
+  } = useEns(props.user);
 
   /**
    * Define user stats
