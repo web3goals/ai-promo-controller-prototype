@@ -17,8 +17,6 @@ export function UserList(props: { chain: number }) {
     chainId: contracts.chain.id,
   });
 
-  console.log({ users });
-
   return (
     <EntityList
       entities={users?.toReversed()}

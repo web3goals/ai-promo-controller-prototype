@@ -1,4 +1,4 @@
-import { Chain } from "viem/chains";
+import { Chain, mainnet } from "viem/chains";
 import { galadrielDevnet } from "./chains";
 
 export type SiteConfig = typeof siteConfig;
@@ -23,6 +23,12 @@ export const siteConfig = {
       requestToken:
         "0x02e1A2a943E6Ce63a89d40EFAE63bf6AcDFEc268" as `0x${string}`,
       usdToken: "0x0c44cFecaFE4da904Ee24984FD74c91C2bE431B7" as `0x${string}`,
+    } as SiteConfigContracts,
+    mainnet: {
+      chain: mainnet,
+      requestToken:
+        "0x0000000000000000000000000000000000000000" as `0x${string}`,
+      usdToken: "0x0000000000000000000000000000000000000000" as `0x${string}`,
     } as SiteConfigContracts,
   },
 };
