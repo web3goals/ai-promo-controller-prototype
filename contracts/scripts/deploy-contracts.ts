@@ -29,6 +29,15 @@ async function main() {
       `Contract 'OpenAiChatGptVision' deployed to: ${await contract.getAddress()}`
     );
   }
+
+  if (!CONTRACTS[network].usdToken) {
+    const contractFactory = await ethers.getContractFactory("USDToken");
+    const contract = await contractFactory.deploy();
+    await contract.waitForDeployment();
+    console.log(
+      `Contract 'USDToken' deployed to: ${await contract.getAddress()}`
+    );
+  }
 }
 
 main().catch((error) => {

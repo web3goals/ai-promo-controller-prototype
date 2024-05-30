@@ -10,6 +10,6 @@ export const CONTRACTS: {
     oracle: "0x4168668812C94a3167FCd41D12014c5498D74d7e",
     chatGpt: "0x02008a8DBc938bd7930bf370617065B6B0c1221a",
     openAiChatGptVision: "0x1e4712A93beEc0aa26151CF44061eE91DD56f921",
-    usdToken: undefined,
+    usdToken: "0x0c44cFecaFE4da904Ee24984FD74c91C2bE431B7",
   },
 };
