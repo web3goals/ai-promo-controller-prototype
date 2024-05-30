@@ -57,12 +57,15 @@ export function RequestCard(props: {
     | "UNKNOWN"
     | "AWAITING_ACCEPTANCE"
     | "AWAITING_COMPLETION"
+    | "AWAITING_CLOSING"
     | "CLOSED_SUCCESSFULLY"
     | "CLOSED_FAILED" = "UNKNOWN";
   if (requestContent?.[5]?.toString() == "0") {
     requestStatus = "AWAITING_ACCEPTANCE";
   } else if (requestContent?.[6]?.toString() == "0") {
     requestStatus = "AWAITING_COMPLETION";
+  } else if (requestContent?.[7]?.toString() == "0") {
+    requestStatus = "AWAITING_CLOSING";
   } else if (requestContent?.[8] == true) {
     requestStatus = "CLOSED_SUCCESSFULLY";
   } else if (requestContent?.[8] == false) {
@@ -92,6 +95,7 @@ export function RequestCard(props: {
             {requestStatus == "UNKNOWN" && "❓"}
             {requestStatus == "AWAITING_ACCEPTANCE" && "🔥"}
             {requestStatus == "AWAITING_COMPLETION" && "⌛"}
+            {requestStatus == "AWAITING_CLOSING" && "👁️"}
             {requestStatus == "CLOSED_SUCCESSFULLY" && "✅"}
             {requestStatus == "CLOSED_FAILED" && "❌"}
           </AvatarFallback>
@@ -107,6 +111,7 @@ export function RequestCard(props: {
             {requestStatus == "UNKNOWN" && "Unknown Status"}
             {requestStatus == "AWAITING_ACCEPTANCE" && "Awaiting Acceptance"}
             {requestStatus == "AWAITING_COMPLETION" && "Awaiting Completion"}
+            {requestStatus == "AWAITING_CLOSING" && "Awaiting Closing"}
             {requestStatus == "CLOSED_SUCCESSFULLY" && "Closed Successfully"}
             {requestStatus == "CLOSED_FAILED" && "Closed Failed"}
           </span>
