@@ -11,27 +11,26 @@ async function main() {
     CONTRACTS[network].openAiChatGptVision as `0x${string}`
   );
 
-  await openAiChatGptVisionContract.startChat(
-    "What’s on here?",
-    "https://i.ibb.co/z6xM3ZB/image.png"
-  );
+  const task = "Make a Telegram post about the Great Money project";
 
-  //   const prompt = `
-  //       I sent the next task to a influencer:
-  //       "
-  //       Make a post in Telegram about Great Money project
-  //       "
-  //       The influencer made the next post in his channel (SEE ATTACHED IMAGE).
+  const prompt = `
+    I sent the next task to a influencer: '${task}'.
 
-  //       Give an answer that contains ONLY ONE number. Where the number is the percentage of how well the post matches the task.
-  //       Double-check that your answer contains only one number.
-  //     `;
+    The influencer said he did the necessary post and sent me this image.
 
-  //   await openAiChatGptVisionContract.addMessage(prompt, 1);
+    Give me an answer that contains ONLY ONE word: 'success' if my task is completed successfully, 'fail' if my task is failed.
 
-  //   const history = await openAiChatGptVisionContract.getMessageHistory(1);
-  //   console.log({ history });
-  //   console.log(JSON.stringify(history));
+    Double-check that your answer contains only one word.
+  `;
+
+  // await openAiChatGptVisionContract.startChat(
+  //   prompt,
+  //   "https://i.ibb.co/z6xM3ZB/image.png"
+  // );
+
+  const history = await openAiChatGptVisionContract.getMessageHistory(6);
+  console.log({ history });
+  console.log(JSON.stringify(history));
 }
 
 main().catch((error) => {
