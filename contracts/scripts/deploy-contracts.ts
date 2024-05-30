@@ -38,6 +38,17 @@ async function main() {
       `Contract 'USDToken' deployed to: ${await contract.getAddress()}`
     );
   }
+
+  if (!CONTRACTS[network].requestToken) {
+    const contractFactory = await ethers.getContractFactory("RequestToken");
+    const contract = await contractFactory.deploy(
+      CONTRACTS[network].oracle || ethers.ZeroAddress
+    );
+    await contract.waitForDeployment();
+    console.log(
+      `Contract 'RequestToken' deployed to: ${await contract.getAddress()}`
+    );
+  }
 }
 
 main().catch((error) => {
