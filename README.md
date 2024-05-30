@@ -1,3 +1,3 @@
-# 🧙‍♀️ AI Promo Controller
+# 👁️ AI Promo Controller
 
 ...
