@@ -52,12 +52,13 @@ export function UserJoinDialog(props: { chain: number }) {
   useEffect(() => {
     setIsUser(true);
     if (users) {
+      let isUser = false;
       for (let i = 0; i < users.length; i++) {
         if (isAddressEqual(users[i], address || zeroAddress)) {
-          return;
+          isUser = true;
         }
-        setIsUser(false);
       }
+      setIsUser(isUser);
     }
   }, [users, address]);
 
