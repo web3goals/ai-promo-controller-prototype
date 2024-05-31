@@ -5,7 +5,7 @@ A platform that helps companies find influencers, send them tasks to promote the
 ## 🛠️ Technologies
 
 - **Galadriel Devnet** is used for smart contracts that handle all operations from creating requests to verifying task completion with an oracle that supports OpenAI multimodal model.
-- **ENS protocol** is used for obtaining social data for inluencer profiles.
+- **ENS protocol** is used for obtaining social data for influencer profiles.
 
 ## 🔗 Artifacts
 
